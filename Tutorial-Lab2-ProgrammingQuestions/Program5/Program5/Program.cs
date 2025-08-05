@@ -29,27 +29,32 @@ namespace Week3LabProgram
         public static void Main(string[] args)
         {
             // Write code to declare the requried variables
-            int
+            int userInput;
 
             // Write code to Display message to ask the user to enter the number of term to be displayed 
             // for the Fibonacci series
             Console.Write("Enter the number of terms to display: ");
-            userInput = ;
+            userInput = Convert.ToInt32(Console.ReadLine());
 
             // Start calculating the terms and displaying them
             Console.WriteLine("The Fibonacci series is: ");
+            int first = 0, second = 1, temp;
             // Write code to display the first 2 terms
-            Console.Write();
+            Console.Write("{0} {1} ",first,second);
 
             // Write code to Create a loop to calculate and display the Fibonacci numbers
-            for (int ; ;)
+            for (int i = 2;i< userInput;i++)
             {
                 // Write code to Display the next terms 
-                Console.Write("  {0}  ", );
-                
+                Console.Write("{0} ",first + second);
+                temp = first + second;
+                first = second;
+                second = temp;
             }
 
             // Write code to Accept a key press from user
+            Console.WriteLine("\nPress any key to exit...");
+            Console.ReadKey();
 
         }
     }

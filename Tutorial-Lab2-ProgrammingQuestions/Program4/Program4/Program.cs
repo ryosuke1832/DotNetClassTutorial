@@ -20,25 +20,27 @@ namespace Week3LabProgram
         public static void Main(string[] args)
         {
             // Write code to Declare Variables
-            int
+            int number1, number2, temp;
 
             // Write code to Display message to the user and ask to enter two numbers
             Console.Write("\nInput the First Number : ");
-            number1 = ;
+            number1 = Convert.ToInt32(Console.ReadLine());
             Console.Write("\nInput the Second Number : ");
-            number2 = ;
+            number2 = Convert.ToInt32(Console.ReadLine());
 
             // Write code to Swap the two number using a 3rd/Temp variable
-            temp = 
-            number1 =
-            number2 =
+            temp = number1;
+            number1 = number2;
+            number2 = temp;
 
             // Write code to Display the results after swaping
             Console.Write("\nAfter Swapping : ");
-            Console.Write("\nFirst Number : ");
-            Console.Write("\nSecond Number : ");
+            Console.Write("\nFirst Number : {0}",number1);
+            Console.Write("\nSecond Number : {0}", number2);
 
             // Write code to Accept a key press from the user
+            Console.WriteLine("\nPress any key to exit...");
+            Console.ReadKey();
 
         }
     }
