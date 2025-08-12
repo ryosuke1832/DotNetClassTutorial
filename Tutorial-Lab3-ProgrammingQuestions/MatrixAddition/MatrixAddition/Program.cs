@@ -34,47 +34,47 @@ namespace Week5LabProgram
     class Matrix
     {
         // Write code to Declare the data members
-        private int ;
-        private int[,] ;
+        private int dimension;
+        private int[,] matrix;
 
         // Write/Complete the code for Default constructor
         public Matrix()
         {
             Console.Write("Enter the dimension of the Square Matrix: ");
-            string userInput = ; /*Complete the code*/
-            dimension = ; /*Complete the code*/
-            matrix = ; /*Complete the code*/
+            string userInput = Console.ReadLine(); /*Complete the code*/
+            dimension = Convert.ToInt32(userInput); /*Complete the code*/
+            matrix = new int[dimension, dimension]; /*Complete the code*/
 
-            for (int outerLoop = 0; outerLoop < ; outerLoop++)
+            for (int outerLoop = 0; outerLoop < dimension; outerLoop++)
             {
-                for(int innerLoop = 0; innerLoop < dimension; innerLoop++)
+                for (int innerLoop = 0; innerLoop < dimension; innerLoop++)
                 {
                     Console.Write("\nEnter the value of ({0}, {1})", outerLoop, innerLoop);
-                    userInput = ; /*Complete the code*/
-                    matrix[, ] = ; /*Complete the code*/
+                    userInput = Console.ReadLine(); /*Complete the code*/
+                    matrix[outerLoop, innerLoop] = Convert.ToInt32(userInput); /*Complete the code*/
                 }
                 Console.WriteLine();
             }
         }
 
         // Write code for  Overloaded constructor
-        public Matrix( int dim)
+        public Matrix(int dim)
         {
-            this.matrix = ; /*Complete the code*/
-            this.dimension = ; /*Complete the code*/
+            this.matrix = new int[dim, dim]; /*Complete the code*/
+            this.dimension = dim; /*Complete the code*/
         }
 
         // Write code for Operator Overloading 
         public static Matrix operator +(Matrix mat1, Matrix mat2)
         {
             // Write code to create tempMatrix
-            Matrix tempMatrix = ;
-            for (int outerLoop = 0; outerLoop < /*Complete the code*/; outerLoop++)
+            Matrix tempMatrix = new Matrix(mat1.dimension); /*Complete the code*/
+            for (int outerLoop = 0; outerLoop < mat1.dimension/*Complete the code*/; outerLoop++)
             {
-                for (int innerLoop = 0; innerLoop < /*Complete the code*/; innerLoop++)
+                for (int innerLoop = 0; innerLoop < mat1.dimension/*Complete the code*/; innerLoop++)
                 {
                     /*Write code to add the matix and store in a temporay matrix*/
-                    tempMatrix.matrix[, ] = mat1. + mat2.;
+                    tempMatrix.matrix[outerLoop, innerLoop] = mat1.matrix[outerLoop, innerLoop] + mat2.matrix[outerLoop, innerLoop];
                 }
             }
             return tempMatrix;
@@ -84,11 +84,11 @@ namespace Week5LabProgram
         public void DisplayMatrix()
         {
             Console.WriteLine("Matrix is:");
-            for (int outerLoop = 0; outerLoop< this./*Write code here*/; outerLoop++)
+            for (int outerLoop = 0; outerLoop < this.dimension; outerLoop++)
             {
-                for (int innerLoop = 0; innerLoop < this./*Write code here*/; innerLoop++)
+                for (int innerLoop = 0; innerLoop < this.dimension; innerLoop++)
                 {
-                    Console.Write(/*Write code here*/ + " ");
+                    Console.Write(this.matrix[outerLoop, innerLoop] + " ");
                 }
                 Console.WriteLine("");
             }
@@ -99,7 +99,7 @@ namespace Week5LabProgram
         {
             get
             {
-               /* Write code here */
+                return this.dimension;
             }
         }
     }
@@ -110,24 +110,24 @@ namespace Week5LabProgram
         static void Main(string[] args)
         {
             // Complete the code to Create the matrices
-            Matrix mat1 = 
-            Matrix mat2 = 
-            Matrix result =
+            Matrix mat1 = new Matrix();
+            Matrix mat2 = new Matrix();
+            Matrix result;
 
             // Complete the code Add Matrix 1 and 2
-            result =
+            result = mat1 + mat2;
 
             // Complete the code Display the matrices and the addition result
             Console.WriteLine("Input matrices are:");
-           
+
             //Write code to Display the matrix
-            mat1. 
-           
-            mat2.;
+            mat1.DisplayMatrix();
+
+            mat2.DisplayMatrix();
 
             // Write code for displaying result
             Console.WriteLine("Result matrix is:");
-            result.;
+            result.DisplayMatrix();
 
             // Accept a key from the user
             Console.ReadKey();

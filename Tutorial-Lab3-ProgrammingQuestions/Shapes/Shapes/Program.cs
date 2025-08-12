@@ -1,4 +1,5 @@
 ﻿using System;
+using Week4LabProgramQuestion;
 /*Write a program to define a Shape class. The Shape class will be used to create two objects: Circle and Rectangle, 
 and calculate their areas.Shape class should have constructors to initialize circle(with radius) and rectangle(with height and width).
 
@@ -38,58 +39,62 @@ namespace Week4LabProgramQuestion
     class Shapes
     {
         // Complete the code to declare Private fields
-        private double 
-        private  // Define the value of pi
+        private double height, width, radius;
+        private const double pi = 3.14159; // Define the value of pi
 
         //Write code to Define Constructor to create a Circle
-        public Shapes()
+        public Shapes(double rad)
         {
-            
+            radius = rad;
+
         }
         //Write code to Define Constructor to create a rectangle
-        public Shapes()
+        public Shapes(double ht, double wd)
         {
-            
+            height = ht;
+            width = wd;
+
         }
         //Write code for the Method to calculate the area of Rectangle
-        public 
+        public double CalculateRectangleArea(double height, double width)
         {
-            
+            return height * width;
         }
-        //Write code for the Method to calculate the area of Circle
-        public 
-        {
 
+        //Write code for the Method to calculate the area of Circle
+        public double CalculateCircleArea(double radius)
+        {
+            return radius * radius * pi;
         }
         // Write code for the Display Method 
         // it takes a char (r for rectangle, c or circle) as an argument
         public void Display(char shapeType)
         {
             // Complete the code below
-            if (shapeType == )
-                Console.WriteLine("Height and Width of rectangle is: {0}, {1}", );
-            else if()
-                Console.WriteLine(;
+            if (shapeType == 'r')
+                Console.WriteLine("Height and Width of rectangle is: {0:F1}, {1:F1}", height, width);
+            else if (shapeType == 'c')
+                Console.WriteLine("Radius of circle is: {0:F1}", radius);
         }
-    }
-    class ShapesTest
-    {
-        static void Main(string[] args)
+        class ShapesTest
         {
-            // Complete the code to Create Shape object as per test case
-            Shapes circle = new Shapes();
-            Shapes rectangle = new Shapes();
+            static void Main(string[] args)
+            {
+                // Complete the code to Create Shape object as per test case
+                Shapes circle = new Shapes(4.0);
+                Shapes rectangle = new Shapes(5.0,4.0);
 
-            // Complete the code to Display the object properties
-            circle.Display('');
-            rectangle.Display('');
+                // Complete the code to Display the object properties
+                circle.Display('c');
+                rectangle.Display('r');
 
-            // Complete the code Calculate and display the area of the objects
-            Console.WriteLine("The area of circle is {0}", circle.);
-            Console.WriteLine("The area of rectangle is {0}", rectangle.);
+                // Complete the code Calculate and display the area of the objects
+                Console.WriteLine("The area of circle is {0}", circle.CalculateCircleArea(circle.radius));
+                Console.WriteLine("The area of rectangle is {0}", rectangle.CalculateRectangleArea(rectangle.height, rectangle.width));
 
-            // Accept a key press from user
-            Console.ReadKey();
+                // Accept a key press from user
+                Console.ReadKey();
+            }
         }
     }
 }

@@ -1,70 +1,145 @@
 ﻿using System;
+// Write a program to Create a ArrayDB class as per below specification
 /*
-Week3 Lab Program:
- 
-Questions:
-Write a C# Program to read a number ‘n’ from the user and generate the first ‘n’ numbers of a Fibonacci series:
-Example:
-Enter the number of terms to display: 10
-The Fibonacci series is: 0 1 1 2 3 5 8 13 21 34
+-------------------------------
+ | ArrayDB                    |
+ -------------------------------
+ | - userData: int[]		  |
+ | - numberOfElement: int     |
+ | - meanValue : double	      |
+ | - varianceValue : double   |
+ | - sdValue : double         |
+ -------------------------------
+ | + ArrayDB()		          |
+ | + getUserData()            |
+ | + CalculateMean():double   |
+ | + CalulateVariance():double|
+ | + CalculateSD(): double    |
+ -------------------------------
 
- Hint:
- By definition, the first two numbers in the Fibonacci sequence are either 1 and 1, or 0 and 1, 
- depending on the chosen starting point of the sequence, and each subsequent number is the sum of the previous two.
+    ArrayDB: 1. Contructor to accept the number of Element to inserted into the array from user and store it in numberOfElement
+             2. initialize the array with the number of element value
 
-The sequence Fn of Fibonacci numbers is defined by the recurrence relation:
+    getUserData: Gets value from the user to store in the array
 
-Fn = Fn-1 + Fn-2
-Let, F1 = 0 and F2 = 1
+    CalculateMean: Calculates the mean of the values in the array (Check Tutorial instructions for formula)
+    CalulateVariance: Calculates the variance of the values in the array(Check Tutorial instructions for formula)
+    CalculateSD: Calculates the Standard Deviation of the values in the array(Check Tutorial instructions for formula)
 
-Hence, F3 = F2 + F1, F3 = 0 + 1 =1
- 
-Reference: https://en.wikipedia.org/wiki/Fibonacci_number
+    In the Main() method:
+    1. Create an Object of the arrayDB class
+    2. Call the getUserData() and populate the array
+    3. Call the methods for mean, variance and Standard Deviation and display the results
+
+    Use Math.Sqrt of square root
+    Example Test case:
+
+    Enter the number of elements in the array: 5
+    Enter the element 0:1
+    Enter the element 1:2
+    Enter the element 2:3
+    Enter the element 3:4
+    Enter the element 4:5
+
+    The Mean is 3
+    The Variance is 2.5
+    The Standard Deviation is 1.58113883008419
+
     */
 
-namespace Week3LabProgram
+
+namespace Week4LabProgramQuestion
 {
-    class FibonacciSeries
+    class ArrayDB
     {
-        public static void Main(string[] args)
+        // Write code to Declare private fields
+        private int[] userData;
+        private int numberOfElement;
+        private double meanValue, varianceValue, sdValue;
+        
+        // Write code for Default Constructor 
+        public ArrayDB()
         {
-            // Write code to declare the requried variables
-            int userInput;
+            Console.Write("Enter the number of elements in the array:");
+            string userInput = Console.ReadLine();
+            numberOfElement = Convert.ToInt32(userInput);
 
-            // Write code to Display message to ask the user to enter the number of term to be displayed 
-            // for the Fibonacci series
-            Console.Write("Enter the number of terms to display: ");
-            userInput = Convert.ToInt32(Console.ReadLine());
+            userData = new int[numberOfElement];
+        }
+        // Write code for the Method to populate the array with user input
+        public void getUserData()
+        {
 
-            // Start calculating the terms and displaying them
-            Console.WriteLine("The Fibonacci series is: ");
-            int first = 0, second = 1, temp;
-            // Write code to display the first 2 terms
-            Console.Write("{0} {1} ",first,second);
-
-            // Write code to Create a loop to calculate and display the Fibonacci numbers
-            for (int i = 2;i< userInput;i++)
+            for (int loopVar = 0; loopVar < numberOfElement; loopVar++)
             {
-                // Write code to Display the next terms 
-                Console.Write("{0} ",first + second);
-                temp = first + second;
-                first = second;
-                second = temp;
+                Console.Write("Enter the element {0}:", loopVar);
+                string userinput = Console.ReadLine();
+                userData[loopVar] = Convert.ToInt32(userinput); ;
             }
+        }
+        // Write code for the Method to calculate Mean
+        public double CalculateMean()
+        {
+            int sum = 0;
+            for (int loopVar = 0; loopVar < userData.Length; loopVar++)
+            {
+                sum += userData[loopVar];
+            }
+            meanValue = sum / userData.Length;
+            return (meanValue);
+        }
+        // Write code for Method to calculate variance
+        public double CalulateVariance()
+        {
+            double sum = 0;
+            for (int loopVar = 0; loopVar < numberOfElement; loopVar++)
+            {
+                sum += Math.Pow((userData[loopVar]- meanValue),2);
+            }
+            varianceValue = sum / (numberOfElement - 1);
+            return (varianceValue);
+        }
+        // Method to calculate Standard Deviation
+        public double CalculateSD()
+        {
+            sdValue = Math.Sqrt(varianceValue);
+            return (sdValue);
+        }
+    }
 
-            // Write code to Accept a key press from user
-            Console.WriteLine("\nPress any key to exit...");
+    class ArrayOperationsTest
+    {
+        static void Main(string[] args)
+        {
+            // Write code to Create ArrayDB object
+            ArrayDB newDB = new ArrayDB();
+
+            // Write code to Get user input
+            newDB.getUserData();
+
+            // Write code to Calculate and display mean, variance and Standard Deviation
+            Console.WriteLine("The Mean is {0}", newDB.CalculateMean());
+            Console.WriteLine("The Variance is {0}", newDB.CalulateVariance());
+            Console.WriteLine("The Standard Deviation is {0}",newDB.CalculateSD() );
+
+            // Accept key press from user
             Console.ReadKey();
-
         }
     }
 }
 
 /*
-Test case:
+    Test case 1:
 
-Enter the number of terms to display: 10
-The Fibonacci series is:
-0 1 1 2 3 5 8 13 21 34
+    Enter the number of elements in the array: 5
+    Enter the element 0:1
+    Enter the element 1:2
+    Enter the element 2:3
+    Enter the element 3:4
+    Enter the element 4:5
 
+    The Mean is 3
+    The Variance is 2.5
+    The Standard Deviation is 1.58113883008419
+    
     */
