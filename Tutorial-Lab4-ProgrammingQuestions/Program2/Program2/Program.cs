@@ -23,7 +23,7 @@ namespace Week6LabProgram
             {
                 // Write the code to read the text file line wise
                 // Hint: Use ReadAllLines()
-                string[] lines = File.ReadAllLines("user_data.txt");
+                string[] lines = File.ReadAllLines("userIdDB.txt");
                 // Split each line using "," as delimiter and print the values as
                 // User Name: ------, Passowrd: .... "
                 // Hint: use foreach loop
