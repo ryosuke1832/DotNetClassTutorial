@@ -11,9 +11,10 @@ namespace Week6LabProgram
     {
         // Data members/properties
         public int NumberOfSides { get; set; }
+        public double areaVal;
 
         // Constructor
-        public Shape( int NoSides)
+        public Shape(int NoSides)
         {
             NumberOfSides = NoSides;
         }
@@ -31,28 +32,30 @@ namespace Week6LabProgram
     }
 
     // Create the Child class Circle derived from Shape
-    public class 
+    public class Circle : Shape
     {
         // Write the code for Data member/properties
-
+        public double Radius { get; set; }
+        public const double pi = 3.14;
 
         // Write the code for Constructor
-        public Circle(): base()
+        public Circle(double radius) : base(0)
         {
-           
+            Radius = radius;
         }
 
         // Write the code to override the base class Area() method
-        public 
+        public override void Area() 
         {
-            areaVal =
+            areaVal = Radius * Radius * pi;
+                
         }
         // Write the code to override the base class Display() method
-        public 
+        public override void Display()
         {
-            Console.WriteLine("\nThe Number of sides of a Circle is : {0}", );
-            Console.WriteLine("The Radius of the Circle is: {0}",);
-            Console.WriteLine("The Area of Circle is : {0}", );
+            Console.WriteLine("\nThe Number of sides of a Circle is : {0}", NumberOfSides);
+            Console.WriteLine("The Radius of the Circle is: {0}", Radius);
+            Console.WriteLine("The Area of Circle is : {0}", areaVal);
         }
     }
 
@@ -60,21 +63,26 @@ namespace Week6LabProgram
     public class Rectangle : Shape
     {
         // Write the code for Data member/properties
+        public double Length { get; set; }
+        public double Breadth { get; set; }
 
-        
         // Write the code for Constructor
-        public Rectangle() : base()
+        public Rectangle(double length, double breadth) : base(4)
         {
-            
+            Length = length;
+            Breadth = breadth;
         }
         // Write the code to override the base class Area() method
-        public 
+        public override void Area()
         {
-            areaVal = ;
+            areaVal = Length * Breadth;
         }
         // Write the code to override the base class Display() method
-        public 
+        public override void Display()
         {
+            Console.WriteLine("\nThe Number of sides of a Rectangle is : {0}", NumberOfSides);
+            Console.WriteLine("The Length and Breadth of the Rectangle is: {0}, {1}", Length, Breadth);
+            Console.WriteLine("The Area of Rectangle is : {0}", areaVal);
             //  hint: Check the Display method of the Circle class to complete the code.
         }
     }
@@ -83,8 +91,8 @@ namespace Week6LabProgram
         static void Main(string[] args)
         {
             // Create Circle and Rectangle Objects
-            Circle C1 = new Circle(1, 4);
-            Rectangle R1 = new Rectangle(4, 5, 4);
+            Circle C1 = new Circle(4);
+            Rectangle R1 = new Rectangle(5, 4);
 
             // Calculate the area
             C1.Area();

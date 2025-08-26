@@ -20,25 +20,30 @@ namespace WinFormsApp
         // Method to create the payment receipt 
         public string GetReceipt()
         {
-            // Write code to Initialize the variables for total proice and the recipt string
-            double ;
-            string ;
+            // Initialize the variables for total price and the receipt string
+            double totalPrice = 0;
+            string receipt = "Student Restaurant\nYour Order Details:\n";
 
-            // Write code to Process each selected food item and calculate the total price
-            foreach (int items in )
+            // Process each selected food item and calculate the total price
+            foreach (int index in menuItems.SelectedIndices)
             {
-                // Write code to Concatenate the selected food items and their price.
-                receipt = receipt +
+                // Get the selected food item name and corresponding price
+                string foodItem = menuItems.Items[index].ToString();
+                string priceString = priceList.Items[index].ToString();
+                double price = Convert.ToDouble(priceString);
 
-                // Write code to Calculate the total price
-                totalPrice += ;
+                // Concatenate the selected food items and their price
+                receipt = receipt + foodItem + " : $" + price.ToString() + "\n";
 
+                // Calculate the total price
+                totalPrice += price;
             }
-            // Write code to Add the total price to the Receipt
-            receipt = receipt + ;
 
-            // Write code to Return receipt
-            return;
+            // Add the total price to the Receipt
+            receipt = receipt + "Total Price : $" + totalPrice.ToString();
+
+            // Return receipt
+            return receipt;
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
